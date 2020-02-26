@@ -3,62 +3,69 @@
 
 using namespace std;
 
-
 void Horse::walkFront()
 {
-    for (i = 45; i < 67; i += 5)
+
+    backRight.attach(10);
+    backLeft.attach(9);
+    frontRight.attach(5);
+    frontLeft.attach(3);
+
+    // change loop to array?
+    for (i = 0; i < 50; i += 5)
     {
         backRight.write(i);
+        delay(100);
     }
-        for (i = 67; i < 90; i += 5)
+    for (i = 50; i < 0; i += 5)
     {
         backRight.write(i);
+        delay(100);
     }
 
-    for (i = 90; i > 45; i -= 5)
+    for (i = 0; i < 50; i += 5)
     {
         frontLeft.write(i);
         delay(100);
     }
 
-    for (i = 45; i < 90; i += 5)
+    for (i = 50; i < 0; i += 5)
+    {
+        frontLeft.write(i);
+        delay(100);
+    }
+
+    for (i = 0; i < 50; i += 5)
+    {
+        frontRight.write(i);
+        delay(100);
+    }
+
+    for (i = 50; i < 0; i += 5)
+    {
+        frontRight.write(i);
+        delay(100);
+    }
+
+    for (i = 0; i < 50; i += 5)
     {
         backLeft.write(i);
         delay(100);
     }
-
-    for (i = 90; i > 45; i -= 5)
+    for (i = 50; i < 0; i += 5)
     {
-        frontRight.write(i);
+        backLeft.write(i);
         delay(100);
     }
 }
 
 void Horse::walkBack()
 {
-    for (i = 90; i > 45; i -= 5)
-    {
-        backRight.write(i);
-        delay(100);
-    }
+    backRight.attach(10);
+    backLeft.attach(9);
+    frontRight.attach(5);
+    frontLeft.attach(3);
 
-    for (i = 45; i < 90; i += 5)
-    {
-        frontLeft.write(i);
-        delay(100);
-    }
-
-    for (i = 90; i > 45; i -= 5)
-    {
-        backLeft.write(i);
-        delay(100);
-    }
-
-    for (i = 45; i < 90; i += 5)
-    {
-        frontRight.write(i);
-        delay(100);
-    }
 }
 
 void Horse::see()
@@ -110,3 +117,17 @@ void Horse::hear()
     Serial.println(leftSensorValue);
 }
 
+void Horse::stop()
+{
+    if (distance > 4)
+    {
+        backRight.write(0);
+        backLeft.write(0);
+        frontRight.write(0);
+        frontLeft.write(0);
+        backRight.detach();
+        backLeft.detach();
+        frontRight.detach();
+        frontLeft.detach();
+    }
+}

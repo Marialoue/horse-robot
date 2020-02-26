@@ -36,5 +36,6 @@ public:
     void walkBack();
     void see();
     void hear();
+    void stop();
 };
 #endif
